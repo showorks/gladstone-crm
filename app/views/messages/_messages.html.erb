@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>Iid</th>
+      <th>Cid</th>
+      <th>Incident date</th>
+      <th>Incident type</th>
+      <th>Incident memo</th>
+      <th>Incident follow up date</th>
+      <th>Incident closed</th>
+      <th>Incident charge</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "messages/message", collection: messages %>
+  </tbody>
+</table>

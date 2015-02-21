@@ -1,0 +1,18 @@
+<%= simple_form_for(@message) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :iid %>
+    <%= f.input :cid %>
+    <%= f.input :incident_date %>
+    <%= f.input :incident_type %>
+    <%= f.input :incident_memo %>
+    <%= f.input :incident_follow_up_date %>
+    <%= f.input :incident_closed %>
+    <%= f.input :incident_charge %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

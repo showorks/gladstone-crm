@@ -1,0 +1,13 @@
+<%= show_for @message do |s| %>
+  <%= s.attribute :iid %>
+  <%= s.attribute :cid %>
+  <%= s.attribute :incident_date %>
+  <%= s.attribute :incident_type %>
+  <%= s.attribute :incident_memo %>
+  <%= s.attribute :incident_follow_up_date %>
+  <%= s.attribute :incident_closed %>
+  <%= s.attribute :incident_charge %>
+<% end %>
+
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

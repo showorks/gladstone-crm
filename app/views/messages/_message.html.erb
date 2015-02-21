@@ -1,0 +1,13 @@
+<tr>
+  <td><%= message.iid %></td>
+  <td><%= message.cid %></td>
+  <td><%= message.incident_date %></td>
+  <td><%= message.incident_type %></td>
+  <td><%= message.incident_memo %></td>
+  <td><%= message.incident_follow_up_date %></td>
+  <td><%= message.incident_closed %></td>
+  <td><%= message.incident_charge %></td>
+  <td><%= link_to 'Show', message %></td>
+  <td><%= link_to 'Edit', edit_message_path(message) %></td>
+  <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

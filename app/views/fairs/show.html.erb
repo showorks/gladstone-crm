@@ -121,7 +121,7 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="messages">
-      messages
+      <%= render partial: 'messages/messages', locals: {messages: @fair.messages.sorted} %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="misc">
