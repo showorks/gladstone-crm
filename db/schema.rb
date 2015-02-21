@@ -11,10 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221012334) do
+ActiveRecord::Schema.define(version: 20150221025555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "fairs", force: :cascade do |t|
+    t.integer  "fid"
+    t.boolean  "is_fair"
+    t.string   "fair_name"
+    t.string   "fair_state"
+    t.text     "fair_notes"
+    t.string   "video_key"
+    t.string   "video_key_2009"
+    t.string   "video_key_2006"
+    t.boolean  "purchased"
+    t.boolean  "returned_product"
+    t.boolean  "converted_from_competition"
+    t.boolean  "feather_in_hat"
+    t.integer  "fair_time"
+    t.integer  "incidents_remaining"
+    t.string   "service_plan_number"
+    t.date     "old_service_plan_ended"
+    t.string   "old_service_plan_number"
+    t.boolean  "international"
+    t.boolean  "showorks_web_user"
+    t.boolean  "temp_flag"
+    t.boolean  "free_upgrade"
+    t.boolean  "poor_payment"
+    t.boolean  "christmas_2010"
+    t.boolean  "christmas_2011"
+    t.boolean  "processed_2012"
+    t.boolean  "mailed_2012_invoice"
+    t.boolean  "courtesy_late_pmt"
+    t.boolean  "bulk_ne"
+    t.boolean  "judas"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

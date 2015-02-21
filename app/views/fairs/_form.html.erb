@@ -1,0 +1,39 @@
+<%= simple_form_for(@fair) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :fid %>
+    <%= f.input :is_fair %>
+    <%= f.input :fair_name %>
+    <%= f.input :fair_state %>
+    <%= f.input :fair_notes %>
+    <%= f.input :video_key %>
+    <%= f.input :video_key_2009 %>
+    <%= f.input :video_key_2006 %>
+    <%= f.input :purchased %>
+    <%= f.input :returned_product %>
+    <%= f.input :converted_from_competition %>
+    <%= f.input :feather_in_hat %>
+    <%= f.input :fair_time %>
+    <%= f.input :incidents_remaining %>
+    <%= f.input :service_plan_number %>
+    <%= f.input :old_service_plan_ended %>
+    <%= f.input :old_service_plan_number %>
+    <%= f.input :international %>
+    <%= f.input :showorks_web_user %>
+    <%= f.input :temp_flag %>
+    <%= f.input :free_upgrade %>
+    <%= f.input :poor_payment %>
+    <%= f.input :christmas_2010 %>
+    <%= f.input :christmas_2011 %>
+    <%= f.input :processed_2012 %>
+    <%= f.input :mailed_2012_invoice %>
+    <%= f.input :courtesy_late_pmt %>
+    <%= f.input :bulk_ne %>
+    <%= f.input :judas %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

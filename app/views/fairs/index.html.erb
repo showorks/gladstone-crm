@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Fairs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fair name</th>
+      <th>FID</th>
+      <th>Is fair</th>
+      <th>Fair state</th>
+      <th>Fair notes</th>
+      <th>Purchased</th>
+      <th>Returned product</th>
+      <th>Converted from competition</th>
+      <th>Feather in hat</th>
+      <th>Fair time</th>
+      <th>Incidents remaining</th>
+      <th>Service plan number</th>
+      <th>International</th>
+      <th>ShoWorks Web User</th>
+      <th>Free upgrade</th>
+      <th>Poor payment</th>
+      <th>Courtesy late pmt</th>
+      <th>Bulk ne</th>
+      <th>Judas</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fairs.each do |fair| %>
+      <tr>
+        <td><%= link_to fair.fair_name, fair %></td>
+        <td><%= fair.fid %></td>
+        <td><%= fair.is_fair %></td>
+        <td><%= fair.fair_state %></td>
+        <td><%= fair.fair_notes %></td>
+        <td><%= fair.purchased %></td>
+        <td><%= fair.returned_product %></td>
+        <td><%= fair.converted_from_competition %></td>
+        <td><%= fair.feather_in_hat %></td>
+        <td><%= fair.fair_time %></td>
+        <td><%= fair.incidents_remaining %></td>
+        <td><%= fair.service_plan_number %></td>
+        <td><%= fair.international %></td>
+        <td><%= fair.showorks_web_user %></td>
+        <td><%= fair.free_upgrade %></td>
+        <td><%= fair.poor_payment %></td>
+        <td><%= fair.courtesy_late_pmt %></td>
+        <td><%= fair.bulk_ne %></td>
+        <td><%= fair.judas %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fair', new_fair_path %>

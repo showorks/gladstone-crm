@@ -1,0 +1,134 @@
+<p>
+  <strong>Fair name:</strong>
+  <%= @fair.fair_name %>
+</p>
+
+<p>
+  <strong>FID:</strong>
+  <%= @fair.fid %>
+</p>
+
+<p>
+  <strong>Is fair:</strong>
+  <%= @fair.is_fair %>
+</p>
+
+<p>
+  <strong>Fair state:</strong>
+  <%= @fair.fair_state %>
+</p>
+
+<p>
+  <strong>Fair notes:</strong>
+  <%= @fair.fair_notes %>
+</p>
+
+<p>
+  <strong>Video key:</strong>
+  <%= @fair.video_key %>
+</p>
+
+
+<p>
+  <strong>Purchased:</strong>
+  <%= @fair.purchased %>
+</p>
+
+<p>
+  <strong>Returned product:</strong>
+  <%= @fair.returned_product %>
+</p>
+
+<p>
+  <strong>Converted from competition:</strong>
+  <%= @fair.converted_from_competition %>
+</p>
+
+<p>
+  <strong>Feather in hat:</strong>
+  <%= @fair.feather_in_hat %>
+</p>
+
+<p>
+  <strong>Fair time:</strong>
+  <%= @fair.fair_time %>
+</p>
+
+<p>
+  <strong>Incidents remaining:</strong>
+  <%= @fair.incidents_remaining %>
+</p>
+
+<p>
+  <strong>Service plan number:</strong>
+  <%= @fair.service_plan_number %>
+</p>
+
+
+<p>
+  <strong>International:</strong>
+  <%= @fair.international %>
+</p>
+
+<p>
+  <strong>ShoWorks web user:</strong>
+  <%= @fair.showorks_web_user %>
+</p>
+
+<p>
+  <strong>Free upgrade:</strong>
+  <%= @fair.free_upgrade %>
+</p>
+
+<p>
+  <strong>Poor payment:</strong>
+  <%= @fair.poor_payment %>
+</p>
+
+<p>
+  <strong>Courtesy late pmt:</strong>
+  <%= @fair.courtesy_late_pmt %>
+</p>
+
+
+<%= link_to 'Edit', edit_fair_path(@fair) %> |
+<%= link_to 'Back', fairs_path %>
+
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a></li>
+    <li role="presentation"><a href="#serials-and-activations" aria-controls="serials-and-activations" role="tab" data-toggle="tab">Serial Numbers and Activations</a></li>
+    <li role="presentation"><a href="#showorks-web" aria-controls="showorks-web" role="tab" data-toggle="tab">ShoWorks Web</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Misc</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="contacts">contacts</div>
+    <div role="tabpanel" class="tab-pane" id="serials-and-activations">serials-and-activations</div>
+    <div role="tabpanel" class="tab-pane" id="showorks-web">showorks-web</div>
+    <div role="tabpanel" class="tab-pane" id="messages">messages</div>
+    <div role="tabpanel" class="tab-pane" id="misc">
+      <%= show_for @fair do |f| %>
+        <%= f.attribute :judas %>
+        <%= f.attribute :bulk_ne %>
+        <%= f.attribute :old_service_plan_ended %>
+        <%= f.attribute :old_service_plan_number %>
+        <%= f.attribute :christmas_2010 %>
+        <%= f.attribute :christmas_2011 %>
+        <%= f.attribute :mailed_2012_invoice %>
+        <%= f.attribute :processed_2012 %>
+        <%= f.attribute :video_key_2006 %>
+        <%= f.attribute :video_key_2009 %>
+        <%= f.attribute :temp_flag %>
+      <% end %>
+    </div>
+
+  </div>
+
+
+</div>

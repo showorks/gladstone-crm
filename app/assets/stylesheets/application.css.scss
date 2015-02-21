@@ -16,3 +16,13 @@
  *= require_tree .
  *= require_self
  */
+
+
+ .label {
+   font-size: 100%;
+   color: #000;
+ }
+
+.show_for .blank {
+  display: none;
+}

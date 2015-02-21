@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fid: 1
+  is_fair: false
+  fair_name: MyString
+  fair_state: MyString
+  fair_notes: MyText
+  video_key: MyString
+  video_key_2009: MyString
+  video_key_2006: MyString
+  purchased: false
+  returned_product: false
+  converted_from_competition: false
+  feather_in_hat: false
+  fair_time: 1
+  incidents_remaining: 1
+  service_plan_number: MyString
+  old_service_plan_ended: 2015-02-20
+  old_service_plan_number: MyString
+  international: false
+  showorks_web_user: false
+  temp_flag: false
+  free_upgrade: false
+  poor_payment: false
+  christmas_2010: false
+  christmas_2011: false
+  processed_2012: false
+  mailed_2012_invoice: false
+  courtesy_late_pmt: false
+  bulk_ne: false
+  judas: false
+
+two:
+  fid: 1
+  is_fair: false
+  fair_name: MyString
+  fair_state: MyString
+  fair_notes: MyText
+  video_key: MyString
+  video_key_2009: MyString
+  video_key_2006: MyString
+  purchased: false
+  returned_product: false
+  converted_from_competition: false
+  feather_in_hat: false
+  fair_time: 1
+  incidents_remaining: 1
+  service_plan_number: MyString
+  old_service_plan_ended: 2015-02-20
+  old_service_plan_number: MyString
+  international: false
+  showorks_web_user: false
+  temp_flag: false
+  free_upgrade: false
+  poor_payment: false
+  christmas_2010: false
+  christmas_2011: false
+  processed_2012: false
+  mailed_2012_invoice: false
+  courtesy_late_pmt: false
+  bulk_ne: false
+  judas: false
