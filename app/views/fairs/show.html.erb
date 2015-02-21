@@ -108,10 +108,22 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="contacts">contacts</div>
-    <div role="tabpanel" class="tab-pane" id="serials-and-activations">serials-and-activations</div>
-    <div role="tabpanel" class="tab-pane" id="showorks-web">showorks-web</div>
-    <div role="tabpanel" class="tab-pane" id="messages">messages</div>
+    <div role="tabpanel" class="tab-pane active" id="contacts">
+      <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts} %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="serials-and-activations">
+      serials-and-activations
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="showorks-web">
+      showorks-web
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="messages">
+      messages
+    </div>
+
     <div role="tabpanel" class="tab-pane" id="misc">
       <%= show_for @fair do |f| %>
         <%= f.attribute :judas %>

@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <th>Cid</th>
+      <th>FID</th>
+      <th>Contact name</th>
+      <th>Contact address</th>
+      <th>Contact city</th>
+      <th>Contact state</th>
+      <th>Contact zip code</th>
+      <th>Contact country</th>
+      <th>Fair address</th>
+      <th>Contact phone 1</th>
+      <th>Contact phone 2</th>
+      <th>Contact phone cell</th>
+      <th>Contact email</th>
+      <th>Contact date registered</th>
+      <th>Contact last edited</th>
+      <th>Contact date address last active</th>
+      <th>Contact last mailed</th>
+      <th>Contact active</th>
+      <th>Contact reputation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "contacts/contact", collection: contacts %>
+  </tbody>
+</table>
