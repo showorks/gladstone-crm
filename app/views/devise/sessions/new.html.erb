@@ -1,0 +1,40 @@
+<div class="widget-box">
+		<div class="widget-header">
+			<h4 class="widget-title">Admin</h4>
+		</div>
+
+
+    <div id="divFeedback" class="alert alert-info" style="margin-bottom:-5px">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
+        <h5>
+        <strong>
+            Login:
+        </strong>
+        </h5>
+        <p>
+        <span id="lblFeedback">This area is restricted to administrative personnel.</span>
+        <br>
+        </p>
+    </div>
+
+
+    <div class="widget-body" style="margin-top:5px">
+	      <div id="pnlClub" class="widget-main no-padding " style="padding-left:10px !important;padding-top:20px !important; display: block;">
+
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-inputs">
+              <%= f.input :email, required: false, autofocus: true, input_html: {style: "width:300px"} %>
+              <%= f.input :password, required: false, input_html: {style: "width:300px"} %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Log in" %>
+            </div>
+          <% end %>
+          <br>
+
+        </div>
+    </div>
+</div>

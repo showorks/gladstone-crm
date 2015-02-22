@@ -2,7 +2,7 @@
 <html>
 <head>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <title><%= @page_title ? "Gladstone CRM #{@page_title}" : "Gladstone CRM" %></title>
+  <title><%= @page_title ? "#{@page_title} - Gladstone CRM" : "Gladstone CRM" %></title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= yield :head %>

@@ -1,30 +1,21 @@
-<table>
+<p>
+  <br>
+  <a class="btn btn-primary" href="#" role="button">New Contact</a>
+</p>
+
+<table class="table-condensed table-striped table-hover table-condensed table-responsive table-bordered">
   <thead>
     <tr>
-      <th>Cid</th>
-      <th>FID</th>
-      <th>Contact name</th>
-      <th>Contact address</th>
-      <th>Contact city</th>
-      <th>Contact state</th>
-      <th>Contact zip code</th>
-      <th>Contact country</th>
-      <th>Fair address</th>
-      <th>Contact phone 1</th>
-      <th>Contact phone 2</th>
-      <th>Contact phone cell</th>
-      <th>Contact email</th>
-      <th>Contact date registered</th>
-      <th>Contact last edited</th>
-      <th>Contact date address last active</th>
-      <th>Contact last mailed</th>
-      <th>Contact active</th>
-      <th>Contact reputation</th>
-      <th colspan="3"></th>
+      <th>Contact Name</th>
+      <th>Phones</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Reputation</th>
+      <th>Last Activity</th>
     </tr>
   </thead>
 
   <tbody>
-    <%= render partial: "contacts/contact", collection: contacts %>
+    <%= render partial: "contacts/contact", collection: contacts.sorted %>
   </tbody>
 </table>

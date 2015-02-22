@@ -1,24 +1,25 @@
-<tr>
-  <td><%= contact.cid %></td>
-  <td><%= contact.fid %></td>
-  <td><%= contact.contact_name %></td>
-  <td><%= contact.contact_address %></td>
-  <td><%= contact.contact_city %></td>
-  <td><%= contact.contact_state %></td>
-  <td><%= contact.contact_zip_code %></td>
-  <td><%= contact.contact_country %></td>
-  <td><%= contact.fair_address %></td>
-  <td><%= contact.contact_phone_1 %></td>
-  <td><%= contact.contact_phone_2 %></td>
-  <td><%= contact.contact_phone_cell %></td>
+<tr class="<%= 'text-muted' unless contact.contact_active? %>">
+  <td nowrap><%= contact.contact_name %></td>
+  <td nowrap><%= contact.contact_phone_numbers.join("<br>").html_safe %></td>
   <td><%= contact.contact_email %></td>
-  <td><%= contact.contact_date_registered %></td>
-  <td><%= contact.contact_last_edited %></td>
-  <td><%= contact.contact_date_address_last_active %></td>
-  <td><%= contact.contact_last_mailed %></td>
-  <td><%= contact.contact_active %></td>
+  <td nowrap>
+    <%= contact.contact_full_address.join("<br>").html_safe  %>
+    <%= "<br>(Fair Address)".html_safe if contact.fair_address? %>
+    <!-- <small>
+    <%= "<br><em>Last Active: #{l contact.contact_date_address_last_active}</em>".html_safe if contact.contact_date_address_last_active? %>
+    <%= "<br><em>Last Mailed: #{l contact.contact_last_mailed}</em>".html_safe if contact.contact_last_mailed? %>
+    </small> -->
+  </td>
+  <!-- <td><%= l contact.contact_date_registered if contact.contact_date_registered.present? %></td>
+  <td><%= l contact.contact_last_edited if contact.contact_last_edited.present? %></td> -->
   <td><%= contact.contact_reputation %></td>
-  <td><%= link_to 'Show', contact %></td>
-  <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
-  <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td>
+    <small>
+    <%= "<em>Registered: #{l contact.contact_date_registered}</em>".html_safe if contact.contact_date_registered? %>
+    <%= "<br><em>Last Edited: #{l contact.contact_last_edited}</em>".html_safe if contact.contact_last_edited? %>
+    <%= "<br><em>Last Active: #{l contact.contact_date_address_last_active}</em>".html_safe if contact.contact_date_address_last_active? %>
+    <%= "<br><em>Last Mailed: #{l contact.contact_last_mailed}</em>".html_safe if contact.contact_last_mailed? %>
+    </small>
+
+  </td>
 </tr>

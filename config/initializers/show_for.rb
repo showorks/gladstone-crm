@@ -7,7 +7,7 @@ ShowFor.setup do |config|
   # config.show_for_class = :custom
 
   # The tag which wraps each attribute/association call. Default is :p.
-  config.wrapper_tag = :dl
+  config.wrapper_tag = :li
 
   # The tag used to wrap each label. Default is :strong.
   config.label_tag = :dt

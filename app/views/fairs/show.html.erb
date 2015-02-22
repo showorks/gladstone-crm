@@ -1,130 +1,89 @@
-<p>
-  <strong>Fair name:</strong>
-  <%= @fair.fair_name %>
+<% @page_title = "Fair: #{@fair.fair_name}" %>
+
+<h2><%= @fair.fair_name %></h2>
+
+<p id="label-container">
+  <!-- Purchased -->
+  <% if @fair.purchased? %>
+    <%= bootstrap_label_helper("Purchased", "success") %>
+  <% else %>
+    <%= bootstrap_label_helper("Not Purchased", "info") %>
+  <% end %>
+
+  <!-- ShoWorks Web User -->
+  <% if @fair.showorks_web_user? %>
+    <%= bootstrap_label_helper("ShoWorks Web User", "success") %>
+  <% else %>
+    <%= bootstrap_label_helper("Not ShoWorks Web User", "info") %>
+  <% end %>
+
+  <!-- Returned Product -->
+  <%= bootstrap_label_helper("Returned Product", "danger") if @fair.returned_product %>
+
+  <!-- Free Upgrade -->
+  <%= bootstrap_label_helper("Free Upgrade", "info") if @fair.free_upgrade %>
+
+  <!-- Converted from Competition -->
+  <%= bootstrap_label_helper("Converted From Competition", "info") if @fair.converted_from_competition %>
+
+  <!-- Feather in Hat -->
+  <%= bootstrap_label_helper("Feather in Hat", "primary") if @fair.feather_in_hat %>
+
+  <!-- Poor Payment -->
+  <%= bootstrap_label_helper("Poor Payment", "warning") if @fair.poor_payment %>
+
+  <!-- Courtesy Late Pmt -->
+  <%= bootstrap_label_helper("Courtesy Late Pmt", "warning") if @fair.courtesy_late_pmt %>
+
 </p>
 
-<p>
-  <strong>FID:</strong>
-  <%= @fair.fid %>
-</p>
+
+<ul class="list-inline">
+  <li><strong>FID: </strong><%= @fair.fid %></li>
+  <li><strong>Is Fair?: </strong><%= boolean_to_words(@fair.is_fair) %></li>
+  <li><strong>Fair time: </strong><%= @fair.fair_time_month_name %></li>
+  <li><strong>Location: </strong><%= @fair.fair_state %> <%= "(International)" if @fair.international? %></li>
+  <li><strong>Service Plan Number: </strong><%= @fair.service_plan_number %></li>
+  <li><strong>Incidents Remaining: </strong><%= @fair.incidents_remaining %></li>
+</ul>
 
 <p>
-  <strong>Is fair:</strong>
-  <%= @fair.is_fair %>
-</p>
-
-<p>
-  <strong>Fair state:</strong>
-  <%= @fair.fair_state %>
-</p>
-
-<p>
-  <strong>Fair notes:</strong>
+  <strong>Fair Notes:</strong>
   <%= @fair.fair_notes %>
 </p>
 
-<p>
-  <strong>Video key:</strong>
-  <%= @fair.video_key %>
-</p>
-
-
-<p>
-  <strong>Purchased:</strong>
-  <%= @fair.purchased %>
-</p>
-
-<p>
-  <strong>Returned product:</strong>
-  <%= @fair.returned_product %>
-</p>
-
-<p>
-  <strong>Converted from competition:</strong>
-  <%= @fair.converted_from_competition %>
-</p>
-
-<p>
-  <strong>Feather in hat:</strong>
-  <%= @fair.feather_in_hat %>
-</p>
-
-<p>
-  <strong>Fair time:</strong>
-  <%= @fair.fair_time %>
-</p>
-
-<p>
-  <strong>Incidents remaining:</strong>
-  <%= @fair.incidents_remaining %>
-</p>
-
-<p>
-  <strong>Service plan number:</strong>
-  <%= @fair.service_plan_number %>
-</p>
-
-
-<p>
-  <strong>International:</strong>
-  <%= @fair.international %>
-</p>
-
-<p>
-  <strong>ShoWorks web user:</strong>
-  <%= @fair.showorks_web_user %>
-</p>
-
-<p>
-  <strong>Free upgrade:</strong>
-  <%= @fair.free_upgrade %>
-</p>
-
-<p>
-  <strong>Poor payment:</strong>
-  <%= @fair.poor_payment %>
-</p>
-
-<p>
-  <strong>Courtesy late pmt:</strong>
-  <%= @fair.courtesy_late_pmt %>
-</p>
-
-
-<%= link_to 'Edit', edit_fair_path(@fair) %> |
-<%= link_to 'Back', fairs_path %>
-
-
+<br>
 <div role="tabpanel">
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a></li>
+    <li role="presentation" class="active"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a></li>
     <li role="presentation"><a href="#serials-and-activations" aria-controls="serials-and-activations" role="tab" data-toggle="tab">Serial Numbers and Activations</a></li>
-    <li role="presentation"><a href="#showorks-web" aria-controls="showorks-web" role="tab" data-toggle="tab">ShoWorks Web</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
     <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Misc</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="contacts">
+
+    <div role="tabpanel" class="tab-pane active" id="messages">
+      <%= render partial: 'messages/messages', locals: {messages: @fair.messages.sorted} %>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="contacts">
       <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts} %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="serials-and-activations">
-      serials-and-activations
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="showorks-web">
-      showorks-web
-    </div>
-
-    <div role="tabpanel" class="tab-pane" id="messages">
-      <%= render partial: 'messages/messages', locals: {messages: @fair.messages.sorted} %>
+      <br>
+      <p>
+        <strong>Video key:</strong>
+        <%= @fair.video_key %>
+      </p>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="misc">
+      <br>
       <%= show_for @fair do |f| %>
         <%= f.attribute :judas %>
         <%= f.attribute :bulk_ne %>
