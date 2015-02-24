@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Contacts</h1>
 
 <%= render partial: 'contacts', locals: {contacts: @contacts} %>
 
 <br>
 
-<%= link_to 'New Contact', new_contact_path %>
+<%= paginate @contacts %>

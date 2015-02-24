@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Fairs</h1>
 
 <table class="table-condensed table-striped table-hover table-condensed table-responsive">
@@ -56,4 +54,4 @@
 
 <br>
 
-<%= link_to 'New Fair', new_fair_path %>
+<%= paginate @fairs %>

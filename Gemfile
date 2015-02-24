@@ -21,6 +21,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'simple_form'
 gem 'show_for'
+gem "select2-rails"
+gem "kaminari"
 
 # Use Unicorn as the app server
 gem 'unicorn'
