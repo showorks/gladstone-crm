@@ -4,7 +4,7 @@ class Contact < ActiveRecord::Base
   scope :sorted, -> { order('contact_last_edited desc') }
 
   def contact_phone_numbers
-    return [contact_phone_1, contact_phone_2, contact_phone_cell].reject! { |c| c.blank? }
+    return [contact_phone_1, contact_phone_2, contact_phone_cell].reject &:blank?
   end
 
   def contact_full_address

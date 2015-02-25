@@ -47,10 +47,12 @@
   <li><strong>Incidents Remaining: </strong><%= @fair.incidents_remaining %></li>
 </ul>
 
-<p>
-  <strong>Fair Notes:</strong>
-  <%= @fair.fair_notes %>
-</p>
+<% if @fair.fair_notes.present? %>
+  <p>
+    <strong>Fair Notes:</strong>
+    <%= @fair.fair_notes %>
+  </p>
+<% end %>
 
 <br>
 <div role="tabpanel">

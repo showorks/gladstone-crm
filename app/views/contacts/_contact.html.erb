@@ -1,17 +1,11 @@
 <tr class="<%= 'text-muted' unless contact.contact_active? %>">
   <td nowrap><%= contact.contact_name %></td>
-  <td nowrap><%= contact.contact_phone_numbers.join("<br>").html_safe %></td>
+  <td nowrap><%= contact.contact_phone_numbers.join("<br>").html_safe if contact.contact_phone_numbers %></td>
   <td><%= contact.contact_email %></td>
   <td nowrap>
     <%= contact.contact_full_address.join("<br>").html_safe  %>
     <%= "<br>(Fair Address)".html_safe if contact.fair_address? %>
-    <!-- <small>
-    <%= "<br><em>Last Active: #{l contact.contact_date_address_last_active}</em>".html_safe if contact.contact_date_address_last_active? %>
-    <%= "<br><em>Last Mailed: #{l contact.contact_last_mailed}</em>".html_safe if contact.contact_last_mailed? %>
-    </small> -->
   </td>
-  <!-- <td><%= l contact.contact_date_registered if contact.contact_date_registered.present? %></td>
-  <td><%= l contact.contact_last_edited if contact.contact_last_edited.present? %></td> -->
   <td><%= contact.contact_reputation %></td>
   <td>
     <small>

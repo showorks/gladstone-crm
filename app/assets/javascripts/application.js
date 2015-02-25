@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require select2
+//= require jquery.highlight
 //= require_tree .
