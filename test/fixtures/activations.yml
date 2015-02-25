@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aid: 1
+  snid: 1
+  system_code: MyString
+  activation_id: MyString
+  computer_description: MyString
+  activation_date: 2015-02-24
+  active_activation: false
+  deaactivation_date: 2015-02-24
+  deactivation_by: MyString
+
+two:
+  aid: 1
+  snid: 1
+  system_code: MyString
+  activation_id: MyString
+  computer_description: MyString
+  activation_date: 2015-02-24
+  active_activation: false
+  deaactivation_date: 2015-02-24
+  deactivation_by: MyString

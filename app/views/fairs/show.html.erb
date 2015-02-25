@@ -82,6 +82,9 @@
         <strong>Video key:</strong>
         <%= @fair.video_key %>
       </p>
+      <%= render partial: 'serial_numbers/serial_numbers', locals: {serial_numbers: @fair.serial_numbers.sorted } %>
+      <br>
+      <%= render partial: 'activations/activations', locals: {activations: @fair.activations.sorted } %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="misc">

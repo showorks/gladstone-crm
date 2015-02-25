@@ -1,0 +1,19 @@
+<h4>Serial Numbers</h4>
+
+<table class="table-condensed table-striped table-hover table-condensed table-responsive table-bordered">
+  <thead>
+    <tr>
+      <th>Issue Date</th>
+      <th>Serial Number</th>
+      <th>Fair Name</th>
+      <th>Version</th>
+      <th>Edition</th>
+      <th>Extras</th>
+      <th nowrap>Svc Plan Override</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "serial_numbers/serial_number", collection: serial_numbers %>
+  </tbody>
+</table>

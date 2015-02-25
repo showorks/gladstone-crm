@@ -1,0 +1,8 @@
+<tr class="<%= 'text-muted' unless activation.active_activation? %>">
+  <td><%= activation.serial_number.serial_number %></td>
+  <td><%= l activation.activation_date if activation.activation_date.present? %></td>
+  <td><%= activation.activation_id %></td>
+  <td><%= activation.system_code %></td>
+  <td><small><%= activation.computer_description %></small></td>
+  <td><small><%= activation.deactivation_date %> <%= "(#{activation.deactivation_by})" if activation.deactivation_date.present? && activation.deactivation_by.present? %></td>
+</tr>

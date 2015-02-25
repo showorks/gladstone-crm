@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221044808) do
+ActiveRecord::Schema.define(version: 20150225024500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activations", force: :cascade do |t|
+    t.integer  "aid"
+    t.integer  "snid"
+    t.string   "system_code"
+    t.string   "activation_id"
+    t.string   "computer_description"
+    t.date     "activation_date"
+    t.boolean  "active_activation"
+    t.date     "deactivation_date"
+    t.string   "deactivation_by"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "fair_id"
+    t.integer  "serial_number_id"
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.integer  "cid"
@@ -141,6 +157,22 @@ ActiveRecord::Schema.define(version: 20150221044808) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "contact_id"
+  end
+
+  create_table "serial_numbers", force: :cascade do |t|
+    t.integer  "snid"
+    t.integer  "fid"
+    t.string   "version"
+    t.string   "edition"
+    t.string   "fair_name"
+    t.string   "serial_number"
+    t.date     "issue_date"
+    t.boolean  "active_serial_number"
+    t.integer  "extras"
+    t.integer  "service_plan_override"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "fair_id"
   end
 
   create_table "users", force: :cascade do |t|

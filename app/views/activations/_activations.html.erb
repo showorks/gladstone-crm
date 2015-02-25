@@ -1,0 +1,18 @@
+<h4>Activations</h4>
+
+<table class="table-condensed table-striped table-hover table-condensed table-responsive table-bordered">
+  <thead>
+    <tr>
+      <th>Serial Number</th>
+      <th>Activation Date</th>
+      <th>Activation ID</th>
+      <th>System Code</th>
+      <th>Computer Description</th>
+      <th>Deactivation Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "activations/activation", collection: activations %>
+  </tbody>
+</table>

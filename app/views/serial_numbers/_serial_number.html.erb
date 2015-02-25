@@ -1,0 +1,9 @@
+<tr class="<%= 'text-muted' unless serial_number.active_serial_number? %>">
+  <td nowrap><%= l serial_number.issue_date if serial_number.issue_date.present? %></td>
+  <td nowrap><%= serial_number.serial_number %></td>
+  <td><%= serial_number.fair_name %></td>
+  <td><%= serial_number.version %></td>
+  <td><%= serial_number.edition %></td>
+  <td align="center"><%= serial_number.extras %></td>
+  <td><%= serial_number.service_plan_override %></td>
+</tr>
