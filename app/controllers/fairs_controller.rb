@@ -104,16 +104,14 @@ class FairsController < ApplicationController
     @query = "#{params[:search]}"
     search = params[:search]
 
-
-    # Search for
+    # Search Operators
     terms = search.split(" ")
     terms.each do |term|
-      puts "term is #{term}"
       if term.include?(":")
         search.slice!(term)
         search.strip!
         operator = term.split(":")[0]
-        query = term.split(":")[1]
+        query = term.split(":")[1].downcase
         if operator.present? && query.present?
           case operator
             when "fair"
@@ -121,8 +119,8 @@ class FairsController < ApplicationController
             when "contact"
               @contacts = @contacts.where("LOWER(contacts.contact_name) like ?", "%#{query}%")
             when "state"
-              @fairs = @fairs.where("LOWER(fair_state) = ?", query.downcase)
-              @contacts = @contacts.where("LOWER(contact_state) = ?", query.downcase)
+              @fairs = @fairs.where("LOWER(fair_state) = ?", query)
+              @contacts = @contacts.where("LOWER(contact_state) = ?", query)
             when "tel"
               @contacts = @contacts.where("contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", "%#{query}%", "%#{query}%", "%#{query}%")
           end
@@ -134,11 +132,9 @@ class FairsController < ApplicationController
     if search.blank? && terms.find_index("state") == nil && terms.find_index("fair") == nil
       @fairs = Fair.none
     else
-      @fairs = @fairs.where("LOWER(fair_name) like ?", "%#{search}%")
+      @fairs = @fairs.where("LOWER(fair_name) like ?", "%#{search.downcase}%")
     end
-
-    @contacts = @contacts.where(" LOWER(contacts.contact_name) like ? or contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-    # @contacts = @contacts.none if search.blank? && terms.find_index("contact") == nil && terms.find_index("state") == nil && terms.find_index("tel") == nil
+    @contacts = @contacts.where(" LOWER(contacts.contact_name) like ? or contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%")
 
     # Apply sort
     @fairs = @fairs.order("fair_name").limit(25)
