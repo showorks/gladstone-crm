@@ -26,6 +26,10 @@ body {
   border: none;
 }
 
+.navbar-header a:hover {
+  border-bottom: 1px solid #337ab7;
+}
+
 hr {
   border-color: black;
 }

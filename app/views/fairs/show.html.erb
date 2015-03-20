@@ -40,11 +40,10 @@
 
 <ul class="list-inline">
   <li><strong>FID: </strong><%= @fair.fid %></li>
-  <li><strong>Is Fair?: </strong><%= boolean_to_words(@fair.is_fair) %></li>
   <li><strong>Fair time: </strong><%= @fair.fair_time_month_name %></li>
   <li><strong>Location: </strong><%= @fair.fair_state %> <%= "(International)" if @fair.international? %></li>
   <li><strong>Service Plan Number: </strong><%= @fair.service_plan_number %></li>
-  <li><strong>Incidents Remaining: </strong><%= @fair.incidents_remaining %></li>
+  <li><strong>ShoWorks Web Contact: </strong><%= @fair.showorks_web_user %></li>
 </ul>
 
 <% if @fair.fair_notes.present? %>
@@ -73,7 +72,7 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="contacts">
-      <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts} %>
+      <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts.order('contact_active desc, contact_name')} %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="serials-and-activations">
@@ -97,7 +96,6 @@
         <%= f.attribute :christmas_2010 %>
         <%= f.attribute :christmas_2011 %>
         <%= f.attribute :mailed_2012_invoice %>
-        <%= f.attribute :processed_2012 %>
         <%= f.attribute :video_key_2006 %>
         <%= f.attribute :video_key_2009 %>
         <%= f.attribute :temp_flag %>

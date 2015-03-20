@@ -22,3 +22,10 @@
 en:
   TrueClass: "Yes"
   FalseClass: "No"
+
+  date:
+    formats:
+      default: "%m-%d-%Y"
+  time:
+    formats:
+      default: "%m-%d-%Y %I:%M%p"

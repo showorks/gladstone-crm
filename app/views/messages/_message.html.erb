@@ -8,12 +8,5 @@
   </td>
   <td nowrap><%= message.contact.contact_name %></td>
   <td nowrap><%= l message.incident_date if message.incident_date.present? %></td>
-  <td nowrap><%= l message.incident_follow_up_date if message.incident_follow_up_date.present? %></td>
-  <td nowrap>
-    <%= message.incident_type_string %>
-    <% if message.incident_charge? %>
-      <span class="glyphicon glyphicon glyphicon-usd" aria-hidden="true" alt="Charged"></span>
-    <% end %>
-  </td>
   <td><%= message.incident_memo %></td>
 </tr>

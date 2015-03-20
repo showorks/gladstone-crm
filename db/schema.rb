@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225024500) do
+ActiveRecord::Schema.define(version: 20150320025955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20150225024500) do
     t.string   "system_code"
     t.string   "activation_id"
     t.string   "computer_description"
-    t.date     "activation_date"
+    t.datetime "activation_date"
     t.boolean  "active_activation"
-    t.date     "deactivation_date"
+    t.datetime "deactivation_date"
     t.string   "deactivation_by"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
@@ -46,10 +46,10 @@ ActiveRecord::Schema.define(version: 20150225024500) do
     t.string   "contact_phone_2"
     t.string   "contact_phone_cell"
     t.string   "contact_email"
-    t.date     "contact_date_registered"
-    t.date     "contact_last_edited"
-    t.date     "contact_date_address_last_active"
-    t.date     "contact_last_mailed"
+    t.datetime "contact_date_registered"
+    t.datetime "contact_last_edited"
+    t.datetime "contact_date_address_last_active"
+    t.datetime "contact_last_mailed"
     t.boolean  "contact_active"
     t.integer  "contact_reputation"
     t.text     "contact_notes"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150225024500) do
     t.boolean  "eclassroom_06"
     t.boolean  "iafe_06"
     t.boolean  "competitor_booth_06"
-    t.date     "date_last_emailed_for_service_reminder"
+    t.datetime "date_last_emailed_for_service_reminder"
     t.boolean  "do_not_remind_for_service"
     t.boolean  "state_convention_07"
     t.boolean  "workshop_07"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20150225024500) do
     t.integer  "fair_time"
     t.integer  "incidents_remaining"
     t.string   "service_plan_number"
-    t.date     "old_service_plan_ended"
+    t.datetime "old_service_plan_ended"
     t.string   "old_service_plan_number"
     t.boolean  "international"
     t.boolean  "showorks_web_user"
@@ -148,10 +148,10 @@ ActiveRecord::Schema.define(version: 20150225024500) do
   create_table "messages", force: :cascade do |t|
     t.integer  "iid"
     t.integer  "cid"
-    t.date     "incident_date"
+    t.datetime "incident_date"
     t.integer  "incident_type"
     t.text     "incident_memo"
-    t.date     "incident_follow_up_date"
+    t.datetime "incident_follow_up_date"
     t.boolean  "incident_closed"
     t.boolean  "incident_charge"
     t.datetime "created_at",              null: false
@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20150225024500) do
     t.string   "edition"
     t.string   "fair_name"
     t.string   "serial_number"
-    t.date     "issue_date"
+    t.datetime "issue_date"
     t.boolean  "active_serial_number"
     t.integer  "extras"
     t.integer  "service_plan_override"
