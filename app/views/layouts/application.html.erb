@@ -50,12 +50,17 @@
 
             <!-- <a class="navbar-brand" href="/">Gladstone CRM</a> -->
           </div>
-          <div style="float:right;text-align:right;">Signed in as <strong><%= current_user.email %></strong><br><%= link_to "Logout", destroy_user_session_path, method: :delete %></div>
+          <div style="float:right;text-align:right;">Signed in as <strong><%= current_user.email %></strong><br>
+            <% if current_user && current_user.role == "administrator" %>
+              <%= link_to "Users", users_path %>
+            <% end %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+          </div>
           <!-- <ul class="nav navbar-nav">
-            <li><%= link_to "Home", "/" %></li>
-            <li><%= link_to "Item One", "#" %></li>
-            <li><%= link_to "Item Two", "#" %></li>
-            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <li><%#= link_to "Home", "/" %></li>
+            <li><%#= link_to "Item One", "#" %></li>
+            <li><%#= link_to "Item Two", "#" %></li>
+            <li><%#= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           </ul> -->
         </div>
       </div>

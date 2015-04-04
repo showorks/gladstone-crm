@@ -1,0 +1,14 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email %>
+    <%= f.input :role, collection: User::ROLES.map { |r| [r.capitalize, r] } %>
+    <%= f.input :password, :input_html => {:autocomplete => :off}, :hint => action_name == "new" ? "" : "Leave blank unless you want to change your password." %>
+    <%= f.input :password_confirmation %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
