@@ -3,12 +3,13 @@ class MessagesController < ApplicationController
   before_action :authorized?
   load_and_authorize_resource
 
+  before_action :set_fair
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.all
+    @messages = @fair.messages.all
   end
 
   # GET /messages/1
@@ -18,7 +19,7 @@ class MessagesController < ApplicationController
 
   # GET /messages/new
   def new
-    @message = Message.new
+    @message = @fair.messages.new
   end
 
   # GET /messages/1/edit
@@ -28,12 +29,12 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = @fair.messages.new(message_params)
 
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+        format.html { redirect_to fair_url(@fair), notice: 'Message was successfully created.' }
+        format.json { render :show, status: :created, location: fair_url(@fair) }
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -46,8 +47,8 @@ class MessagesController < ApplicationController
   def update
     respond_to do |format|
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
-        format.json { render :show, status: :ok, location: @message }
+        format.html { redirect_to fair_url(@fair), notice: 'Message was successfully updated.' }
+        format.json { render :show, status: :ok, location: fair_url(@fair) }
       else
         format.html { render :edit }
         format.json { render json: @message.errors, status: :unprocessable_entity }
@@ -60,19 +61,23 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     respond_to do |format|
-      format.html { redirect_to messages_url, notice: 'Message was successfully destroyed.' }
+      format.html { redirect_to fair_url(@fair), notice: 'Message was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_fair
+      @fair = Fair.find(params[:fair_id])
+    end
+
     def set_message
-      @message = Message.find(params[:id])
+      @message = @fair.messages.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:iid, :cid, :incident_date, :incident_type, :incident_memo, :incident_follow_up_date, :incident_closed, :incident_charge)
+      params.require(:message).permit(:iid, :cid, :contact_id, :incident_date, :incident_type, :incident_memo, :incident_follow_up_date, :incident_closed, :incident_charge)
     end
 end

@@ -1,18 +1,21 @@
-<%= simple_form_for(@message) do |f| %>
+<%= simple_form_for([@fair, @message]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :iid %>
-    <%= f.input :cid %>
-    <%= f.input :incident_date %>
-    <%= f.input :incident_type %>
-    <%= f.input :incident_memo %>
-    <%= f.input :incident_follow_up_date %>
+    <%= f.input :incident_date, :as => :datetime_picker %>
+    <%= f.input :incident_type, collection: Message::INCIDENT_TYPES %>
+    <%= f.input :contact_id, collection: @fair.contacts %>
+    <%= f.input :incident_memo, input_html: {rows: 5} %>
+    <%= f.input :incident_follow_up_date, :as => :datetime_picker %>
     <%= f.input :incident_closed %>
     <%= f.input :incident_charge %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
+    or <%= link_to "Back", :back %>
+    <% if @message.id && @message.iid.blank? %>
+      or <small><%= link_to "Delete", fair_message_path(@fair, @message), method: :delete, data: {confirm: "Are you sure you want to delete this message?"}, class: "text-danger" %></small>
+    <% end %>
   </div>
 <% end %>

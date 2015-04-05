@@ -9,4 +9,9 @@
   <td nowrap><%= message.contact.contact_name %></td>
   <td nowrap><%= l message.incident_date if message.incident_date.present? %></td>
   <td><%= message.incident_memo %></td>
+  <% if message.iid.blank? && current_user.role == "administrator" %>
+    <td><%= link_to_if message.iid.blank?, "Edit", edit_fair_message_path(@fair, message) %></td>
+  <% else %>
+    <td>&nbsp;</td>
+  <% end %>
 </tr>

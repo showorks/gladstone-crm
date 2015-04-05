@@ -3,6 +3,10 @@ class Contact < ActiveRecord::Base
   has_many :messages
   scope :sorted, -> { order('contact_last_edited desc') }
 
+  def to_s
+    contact_name
+  end
+
   def contact_phone_numbers
     return [contact_phone_1, contact_phone_2, contact_phone_cell].reject &:blank?
   end

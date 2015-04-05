@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :messages
-
-  resources :contacts
 
   resources :fairs do
+    resources :messages
+    resources :contacts
     collection do
       get :autocomplete_fairs
       get :search, via: [:get, :post]
