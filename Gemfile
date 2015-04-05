@@ -11,6 +11,7 @@ gem 'delayed_job_active_record'
 
 gem 'honeybadger'
 gem 'devise'
+gem 'devise_lastseenable'
 gem 'cancancan'
 
 gem 'jquery-rails'

@@ -1,0 +1,14 @@
+<h4>Login History</h4>
+
+<table class="table-condensed table-striped table-hover table-condensed table-responsive table-bordered">
+  <thead>
+    <tr>
+      <th>Sign In At</th>
+      <th>IP Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: "user_logins/user_login", collection: user_logins %>
+  </tbody>
+</table>
