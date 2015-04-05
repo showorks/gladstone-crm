@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorized?
+  load_and_authorize_resource
+
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
