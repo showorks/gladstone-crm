@@ -59,6 +59,8 @@
     <%= f.input :eblast_2012_announce %>
     <%= f.input :christmas_2011 %>
     <%= f.input :bulk_ne %>
+    <%= f.input :created_by, collection: User.all, disabled: true %>
+    <%= f.input :updated_by, collection: User.all, disabled: true %>
   </div>
 
   <div class="form-actions">

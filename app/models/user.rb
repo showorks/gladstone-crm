@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   ROLES = %w(administrator supporter)
 
+  def to_s
+    email
+  end
+
   def update_tracked_fields!(request)
     old_signin = self.last_sign_in_at
     super
