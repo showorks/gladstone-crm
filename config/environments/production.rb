@@ -89,6 +89,4 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   ActionMailer::Base.delivery_method = :smtp
-
-  config.time_zone = 'Central Time (US & Canada)'
 end
