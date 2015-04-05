@@ -2,6 +2,7 @@ class Contact < ActiveRecord::Base
   belongs_to :fair
   has_many :messages
   scope :sorted, -> { order('contact_last_edited desc') }
+  records_with_operator_on :create, :update
 
   def to_s
     contact_name

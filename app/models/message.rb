@@ -3,6 +3,7 @@ class Message < ActiveRecord::Base
   belongs_to :contact
   has_one :fair, through: :contact
   scope :sorted, -> { order('incident_date desc') }
+  records_with_operator_on :create, :update
 
   after_create :set_cid
 

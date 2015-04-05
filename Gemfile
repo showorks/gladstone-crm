@@ -13,6 +13,7 @@ gem 'honeybadger'
 gem 'devise'
 gem 'devise_lastseenable'
 gem 'cancancan'
+gem 'record_with_operator'
 
 gem 'jquery-rails'
 gem 'turbolinks'

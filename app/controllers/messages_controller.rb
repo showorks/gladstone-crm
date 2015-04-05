@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
 
   before_action :set_fair
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :set_operator, only: [:create, :update]
 
   # GET /messages
   # GET /messages.json
@@ -78,6 +79,8 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:iid, :cid, :contact_id, :incident_date, :incident_type, :incident_memo, :incident_follow_up_date, :incident_closed, :incident_charge)
+      params.require(:message).permit(:iid, :cid, :contact_id, :incident_date, :incident_type, :incident_memo,
+                                      :incident_follow_up_date, :incident_closed, :incident_charge,
+                                      :created_by, :updated_by)
     end
 end

@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def set_operator
+    RecordWithOperator.operator = current_user
+  end
+
   protected
 
   def json_request?
