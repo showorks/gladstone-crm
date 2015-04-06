@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
+  get '/files', to: "files#index", as: 'files'
+  get '/files/import', to: "files#import", as: 'import_files'
   root to: "dashboard#index"
 end

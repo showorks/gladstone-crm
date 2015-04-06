@@ -1,0 +1,5 @@
+<%= direct_upload_form_for @csv_file, {action: :import} do |f| %>
+  <%= f.label "CSV File" %>
+  <%= f.file_field 'csv_file' %>
+  <%= f.submit %>
+<% end %>

@@ -3,8 +3,12 @@ class ImportContactsJob < GladstoneJob
   queue_as :default
 
   def perform(*args)
+    # Download file from S3
+    get_file_from_s3(arguments.first[:filename])
+
+    # Import data from CSV
     @filename_with_path = "#{Rails.root}/tmp/uploads/Contacts.csv"
-    CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol) do |row|
+    CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
       contact = Contact.find_by_cid( row[:cid])
       unless contact
         contact = Contact.new

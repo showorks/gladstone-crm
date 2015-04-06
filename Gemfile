@@ -7,7 +7,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
 gem "figaro"
 gem 'pg'
+gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'carrierwave_direct'
 
 gem 'honeybadger'
 gem 'devise'
