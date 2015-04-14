@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   respond_to :html, :xml, :json
   before_action :authenticate_user!
-  before_action :authorized?
-  load_and_authorize_resource
+  authorize_resource
 
   def index
     @users = User.all.order("email")

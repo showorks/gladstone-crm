@@ -8,7 +8,9 @@ class Ability
 
   def supporter
     can :read, :all
-    cannot :manage, :user
+    can :search, :all
+    cannot :read, File
+    cannot :read, User
   end
 
   def administrator

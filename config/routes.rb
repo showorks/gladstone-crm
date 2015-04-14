@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/files', to: "files#index", as: 'files'
+  get '/files/changes', to: "files#changes", as: 'changes_files'
   get '/files/import', to: "files#import", as: 'import_files'
-  root to: "dashboard#index"
+  root to: "fairs#search"
 end

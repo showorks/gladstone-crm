@@ -1,7 +1,6 @@
 class FairsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorized?
-  load_and_authorize_resource
+  authorize_resource
 
   before_action :set_fair, only: [:show, :edit, :update, :destroy]
 
@@ -100,8 +99,7 @@ class FairsController < ApplicationController
   end
 
   def search
-    if params[:search]
-    end
+    return unless params[:search]
 
     @fairs = Fair.all
     @contacts = Contact.all
@@ -143,6 +141,7 @@ class FairsController < ApplicationController
     # Apply sort
     @fairs = @fairs.order("fair_name").limit(25)
     @contacts = @contacts.order("contact_name").limit(25)
+
   end
 
   private

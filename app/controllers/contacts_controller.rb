@@ -1,7 +1,6 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorized?
-  load_and_authorize_resource
+  authorize_resource
 
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :set_operator, only: [:create, :update]

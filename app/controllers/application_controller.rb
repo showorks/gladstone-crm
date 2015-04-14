@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     Time.zone = user_signed_in? ? current_user.time_zone : "Central Time (US & Canada)"
   end
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = exception.message
+    flash[:alert] = exception.message
     redirect_to root_url
   end
 
@@ -26,9 +26,5 @@ class ApplicationController < ActionController::Base
 
   def admin?
     user_signed_in? && current_user.role == "administrator"
-  end
-
-  def authorized?
-    redirect_to new_user_session_url unless self.action_name == 'dashboard' || admin?
   end
 end
