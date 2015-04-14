@@ -1,5 +1,21 @@
+<% @page_title = "Files" %>
+
+<h2>Files</h2>
+
+<h3>Download Changes</h3>
+<p><em>Download a zip file of additions and changes to Contacts and Messages.</em></p>
+<%= button_to "Download Changes", changes_files_path(format: :zip), method: :get, class: "btn btn-primary", id: "download-changes" %>
+
+<h3>Upload Latest Data</h3>
+<p><em>Upload a zip file containing the latest data to replace all existing data.<br>Allowed files: Activations.csv, Contacts.csv, Fairs.csv, Incidents.csv, and Serial Numbers.csv.</em></p>
 <%= direct_upload_form_for @csv_file, {action: :import} do |f| %>
-  <%= f.label "CSV File" %>
-  <%= f.file_field 'csv_file' %>
-  <%= f.submit %>
+  <%= f.file_field 'csv_file' %><br>
+  <%= f.submit "Upload Lastest Data", class: "btn btn-primary", id: "upload-changes", disabled: true %>
 <% end %>
+
+
+<script>
+$("#download-changes").click(function() {
+  $("#upload-changes").removeAttr('disabled');
+});
+</script>

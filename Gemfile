@@ -16,6 +16,7 @@ gem 'devise'
 gem 'devise_lastseenable'
 gem 'cancancan'
 gem 'record_with_operator'
+gem "zipruby"
 
 gem 'jquery-rails'
 gem 'turbolinks'
