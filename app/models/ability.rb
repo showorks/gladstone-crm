@@ -8,7 +8,11 @@ class Ability
 
   def supporter
     can :read, :all
-    can :search, :all
+    can :search, Fair
+    can :create, Contact
+    can [:edit, :update], Contact, sync: true
+    can :create, Message
+    can [:edit, :update], Message, sync: true
     cannot :read, File
     cannot :read, User
   end

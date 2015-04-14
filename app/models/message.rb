@@ -6,6 +6,7 @@ class Message < ActiveRecord::Base
   records_with_operator_on :create, :update
 
   after_create :set_cid
+  after_save :update_sync
 
   INCIDENT_TYPES = [
     ["Misc.", 0],
@@ -23,6 +24,10 @@ class Message < ActiveRecord::Base
 
   def set_cid
     self.update_attribute(:cid, self.contact.cid) if self.contact
+  end
+
+  def update_sync
+    self.update_column(:sync, true) unless self.sync?
   end
 
 end
