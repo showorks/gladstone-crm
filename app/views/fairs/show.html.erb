@@ -76,7 +76,11 @@
     </div>
 
     <div role="tabpanel" class="tab-pane" id="contacts">
-      <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts.order('contact_active desc, contact_name')} %>
+      <p>
+        <br>
+        <%= link_to "New Contact", new_fair_contact_path(@fair), class: "btn btn-primary" %>
+      </p>
+      <%= render partial: 'contacts/contacts', locals: {contacts: @fair.contacts.sorted} %>
     </div>
 
     <div role="tabpanel" class="tab-pane" id="serials-and-activations">

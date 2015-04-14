@@ -1,69 +1,92 @@
-<%= simple_form_for(@contact) do |f| %>
+<%= simple_form_for([@fair, @contact]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :cid %>
-    <%= f.input :fid %>
-    <%= f.input :contact_name %>
-    <%= f.input :contact_address %>
-    <%= f.input :contact_city %>
-    <%= f.input :contact_state %>
-    <%= f.input :contact_zip_code %>
-    <%= f.input :contact_country %>
-    <%= f.input :fair_address %>
-    <%= f.input :contact_phone_1 %>
-    <%= f.input :contact_phone_2 %>
-    <%= f.input :contact_phone_cell %>
-    <%= f.input :contact_email %>
-    <%= f.input :contact_date_registered %>
-    <%= f.input :contact_last_edited %>
-    <%= f.input :contact_date_address_last_active %>
-    <%= f.input :contact_last_mailed %>
-    <%= f.input :contact_active %>
-    <%= f.input :contact_reputation %>
-    <%= f.input :contact_notes %>
-    <%= f.input :do_not_mail %>
-    <%= f.input :showorks_web_contact %>
-    <%= f.input :source %>
-    <%= f.input :to_print %>
-    <%= f.input :valid_address %>
-    <%= f.input :bad_address %>
-    <%= f.input :bulk_mail_2000_cd %>
-    <%= f.input :to_terrell %>
-    <%= f.input :bulk_mail_2003_cd %>
-    <%= f.input :international %>
-    <%= f.input :gift_basket %>
-    <%= f.input :brochure_2004_fall %>
-    <%= f.input :christmas_card_2004 %>
-    <%= f.input :temp_flag %>
-    <%= f.input :sweb_mailout %>
-    <%= f.input :nalsrma %>
-    <%= f.input :filled_out_form_at_2005_rmfa %>
-    <%= f.input :christmas_card_2005 %>
-    <%= f.input :filled_out_form_at_2005_iafe %>
-    <%= f.input :followup %>
-    <%= f.input :flag %>
-    <%= f.input :excel_workshop_06 %>
-    <%= f.input :eclassroom_06 %>
-    <%= f.input :iafe_06 %>
-    <%= f.input :competitor_booth_06 %>
-    <%= f.input :date_last_emailed_for_service_reminder %>
-    <%= f.input :do_not_remind_for_service %>
-    <%= f.input :state_convention_07 %>
-    <%= f.input :workshop_07 %>
-    <%= f.input :christmas_card_07 %>
-    <%= f.input :christmas_box_07 %>
-    <%= f.input :beta_tester %>
-    <%= f.input :wyoming_training %>
-    <%= f.input :recieved_thank_you_from_christmas_box %>
-    <%= f.input :eblast_2012_announce %>
-    <%= f.input :christmas_2011 %>
-    <%= f.input :bulk_ne %>
-    <%= f.input :created_by, collection: User.all, disabled: true %>
-    <%= f.input :updated_by, collection: User.all, disabled: true %>
+
+    <div role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#main" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Misc</a></li>
+      </ul>
+      <br>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane active" id="main">
+          <%= f.input :contact_name %>
+          <%= f.input :contact_address %>
+          <%= f.input :contact_city %>
+          <%= f.input :contact_state %>
+          <%= f.input :contact_zip_code %>
+          <%= f.input :contact_country, priority: [ "United States", "Canada" ], include_blank: true %>
+          <%= f.input :fair_address %>
+          <%= f.input :contact_phone_1 %>
+          <%= f.input :contact_phone_2 %>
+          <%= f.input :contact_phone_cell %>
+          <%= f.input :contact_email %>
+          <%= f.input :contact_notes %>
+          <%= f.input :created_by, collection: User.all, disabled: true %>
+          <%= f.input :updated_by, collection: User.all, disabled: true %>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="misc">
+          <%= f.input :contact_date_registered, :as => :datetime_picker %>
+          <%= f.input :contact_last_edited, :as => :datetime_picker %>
+          <%= f.input :contact_date_address_last_active, :as => :datetime_picker %>
+          <%= f.input :contact_last_mailed, :as => :datetime_picker %>
+          <%= f.input :contact_active %>
+          <%= f.input :contact_reputation %>
+          <%= f.input :do_not_mail %>
+          <%= f.input :showorks_web_contact %>
+          <%= f.input :source %>
+          <%= f.input :to_print %>
+          <%= f.input :valid_address %>
+          <%= f.input :bad_address %>
+          <%= f.input :bulk_mail_2000_cd %>
+          <%= f.input :to_terrell %>
+          <%= f.input :bulk_mail_2003_cd %>
+          <%= f.input :international %>
+          <%= f.input :gift_basket %>
+          <%= f.input :brochure_2004_fall %>
+          <%= f.input :christmas_card_2004 %>
+          <%= f.input :temp_flag %>
+          <%= f.input :sweb_mailout %>
+          <%= f.input :nalsrma %>
+          <%= f.input :filled_out_form_at_2005_rmfa %>
+          <%= f.input :christmas_card_2005 %>
+          <%= f.input :filled_out_form_at_2005_iafe %>
+          <%= f.input :followup %>
+          <%= f.input :flag %>
+          <%= f.input :excel_workshop_06 %>
+          <%= f.input :eclassroom_06 %>
+          <%= f.input :iafe_06 %>
+          <%= f.input :competitor_booth_06 %>
+          <%= f.input :date_last_emailed_for_service_reminder, :as => :datetime_picker %>
+          <%= f.input :do_not_remind_for_service %>
+          <%= f.input :state_convention_07 %>
+          <%= f.input :workshop_07 %>
+          <%= f.input :christmas_card_07 %>
+          <%= f.input :christmas_box_07 %>
+          <%= f.input :beta_tester %>
+          <%= f.input :wyoming_training %>
+          <%= f.input :recieved_thank_you_from_christmas_box %>
+          <%= f.input :eblast_2012_announce %>
+          <%= f.input :christmas_2011 %>
+          <%= f.input :bulk_ne %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+    or <%= link_to "Back", :back %>
+    <% if @contact.id && @contact.cid.blank? %>
+      or <small><%= link_to "Delete", fair_contact_path(@fair, @contact), method: :delete, data: {confirm: "Are you sure you want to delete this contact?"}, class: "text-danger" %></small>
+    <% end %>
   </div>
 <% end %>

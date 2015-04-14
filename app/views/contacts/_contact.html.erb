@@ -10,10 +10,15 @@
   </td>
   <td nowrap>
     <small>
-    <%= "<em>Registered: #{l contact.contact_date_registered}</em>".html_safe if contact.contact_date_registered? %>
-    <%= "<br><em>Last Edited: #{l contact.contact_last_edited}</em>".html_safe if contact.contact_last_edited? %>
+    <%= "<em>Last Edited: #{l contact.contact_last_edited}</em>".html_safe if contact.contact_last_edited? %>
     <%= "<br><em>Last Active: #{l contact.contact_date_address_last_active}</em>".html_safe if contact.contact_date_address_last_active? %>
     <%= "<br><em>Last Mailed: #{l contact.contact_last_mailed}</em>".html_safe if contact.contact_last_mailed? %>
+    <%= "<br><em>Registered: #{l contact.contact_date_registered}</em>".html_safe if contact.contact_date_registered? %>
     </small>
   </td>
+  <% if contact.cid.blank? && (current_user.role == "administrator" || (contact.created_by.present? && current_user.id == contact.created_by)) %>
+    <td><%= link_to_if contact.cid.blank?, "Edit", edit_fair_contact_path(@fair, contact) %></td>
+  <% else %>
+    <td>&nbsp;</td>
+  <% end %>
 </tr>

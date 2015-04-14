@@ -1,11 +1,13 @@
 class Message < ActiveRecord::Base
-
   belongs_to :contact
   has_one :fair, through: :contact
-  scope :sorted, -> { order('incident_date desc') }
-  records_with_operator_on :create, :update
+  has_one :created_by_name, class_name: "User", foreign_key: "id"
 
-  after_create :set_cid
+  scope :sorted, -> { order('incident_date desc') }
+  scope :to_sync, -> { where(sync: true) }
+
+  records_with_operator_on :create, :update
+  before_create :set_cid
   after_save :update_sync
 
   INCIDENT_TYPES = [
@@ -23,7 +25,7 @@ class Message < ActiveRecord::Base
   end
 
   def set_cid
-    self.update_attribute(:cid, self.contact.cid) if self.contact
+    self.cid = self.contact.cid if self.contact
   end
 
   def update_sync

@@ -12,5 +12,12 @@
 
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'ShoWorks'
+  inflect.acronym 'SWeb'
+  inflect.acronym 'FID'
+  inflect.acronym 'CID'
+  inflect.acronym 'CD'
+  inflect.acronym 'NALSRMA'
+  inflect.acronym 'RMFA'
+  inflect.acronym 'IAFE'
   inflect.acronym 'FID'
 end
