@@ -1,14 +1,7 @@
 class ImportFairsJob < GladstoneJob
   require 'csv'
-  queue_as :default
 
   def perform(*args)
-    # Download file from S3
-    get_file_from_s3(arguments.first[:filename])
-
-    # Remove existing data
-    Fair.delete_all
-
     # Import data from CSV
     @filename_with_path = "#{Rails.root}/tmp/uploads/Fairs.csv"
     CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
@@ -45,6 +38,8 @@ class ImportFairsJob < GladstoneJob
       fair.courtesy_late_pmt = gs_convert_boolean(row[:courtesy_late_pmt])
       fair.bulk_ne = gs_convert_boolean(row[:bulk_ne])
       fair.judas = gs_convert_boolean(row[:judas])
+
+      # Save record
       fair.save
     end
   end

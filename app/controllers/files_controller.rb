@@ -48,28 +48,10 @@ class FilesController < ApplicationController
 
 
   def import
-
-    # Download and Unzip file from S3
-
-    # case params[:key].split("/").last
-    #   when "Activations.csv"
-    #     ImportActivationsJob.perform_later(filename: params[:key])
-    #     flash[:notice] = "Activations CSV queued for import."
-    #   when "Contacts.csv"
-    #     ImportContactsJob.perform_later(filename: params[:key])
-    #     flash[:notice] = "Contacts CSV queued for import."
-    #   when "Fairs.csv"
-    #     ImportFairsJob.perform_later(filename: params[:key])
-    #     flash[:notice] = "Fairs CSV queued for import."
-    #   when "Incidents.csv"
-    #     ImportIncidentsJob.perform_later(filename: params[:key])
-    #     flash[:notice] = "Incidents CSV queued for import."
-    #   when "Serial Numbers.csv"
-    #     ImportSerialNumbersJob.perform_later(filename: params[:key])
-    #     flash[:notice] = "Serial Numbers CSV queued for import."
-    # end
-
-    redirect_to files_path
+    Delayed::Job.enqueue ImportChangesJob.new(params[:key])
+    flash[:notice] = "Your file has been queued for importing."
+    # ImportChangesJob.new(params[:key]).perform
+    redirect_to root_path
   end
 
 end

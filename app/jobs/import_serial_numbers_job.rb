@@ -1,14 +1,7 @@
 class ImportSerialNumbersJob < GladstoneJob
   require 'csv'
-  queue_as :default
 
   def perform(*args)
-    # Download file from S3
-    get_file_from_s3(arguments.first[:filename])
-
-    # Remove existing data
-    SerialNumber.delete_all
-
     # Import data from CSV
     @filename_with_path = "#{Rails.root}/tmp/uploads/Serial Numbers.csv"
     CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
@@ -30,6 +23,7 @@ class ImportSerialNumbersJob < GladstoneJob
       # Link up to Fair
       serial_number.fair = Fair.find_by_fid(row[:fid])
 
+      # Save record
       serial_number.save
     end
   end

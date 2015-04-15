@@ -1,11 +1,7 @@
 class ImportMessagesJob < GladstoneJob
   require 'csv'
-  queue_as :default
 
   def perform(*args)
-    # Download file from S3
-    get_file_from_s3(arguments.first[:filename])
-
     # Import data from CSV
     @filename_with_path = "#{Rails.root}/tmp/uploads/Incidents.csv"
     CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
@@ -25,6 +21,7 @@ class ImportMessagesJob < GladstoneJob
       # Link up to Contacts
       message.contact = Contact.find_by_cid(row[:cid])
 
+      # Save record
       message.save
     end
   end

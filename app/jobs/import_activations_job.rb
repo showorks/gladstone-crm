@@ -1,14 +1,7 @@
 class ImportActivationsJob < GladstoneJob
   require 'csv'
-  queue_as :default
 
   def perform(*args)
-    # Download file from S3
-    get_file_from_s3(arguments.first[:filename])
-
-    # Remove existing data
-    Activation.delete_all
-
     # Import data from CSV
     @filename_with_path = "#{Rails.root}/tmp/uploads/Activations.csv"
     CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
@@ -29,6 +22,7 @@ class ImportActivationsJob < GladstoneJob
       # Link up to Fair and Serial Number
       activation.serial_number = SerialNumber.find_by_snid(row[:snid])
 
+      # Save record
       activation.save
     end
   end
