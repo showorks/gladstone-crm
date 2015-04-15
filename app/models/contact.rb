@@ -1,6 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :fair
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   scope :sorted, -> { order('sync, contact_active desc, contact_name') }
   scope :to_sync, -> { where(sync: true) }

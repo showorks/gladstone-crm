@@ -89,4 +89,8 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
   ActionMailer::Base.delivery_method = :smtp
+
+  config.after_initialize do
+    Delayed::Job.scaler = :heroku_cedar
+  end
 end

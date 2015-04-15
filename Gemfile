@@ -9,6 +9,7 @@ gem "figaro"
 gem 'pg'
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'workless'
 gem 'carrierwave_direct'
 
 gem 'honeybadger'
