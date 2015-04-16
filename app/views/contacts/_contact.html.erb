@@ -1,4 +1,4 @@
-<tr class="<%= 'text-muted' unless contact.contact_active? %>">
+<tr class="<%= 'text-muted' unless contact.contact_active? || contact.cid.blank? %>">
   <td nowrap><%= contact.contact_name %> <br> <small><%= contact.contact_email %></small></td>
   <td nowrap><%= contact.contact_phone_numbers.join("<br>").html_safe if contact.contact_phone_numbers %></td>
   <td nowrap>
