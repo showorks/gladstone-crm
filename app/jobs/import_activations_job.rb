@@ -2,28 +2,36 @@ class ImportActivationsJob < GladstoneJob
   require 'csv'
 
   def perform(*args)
-    # Import data from CSV
-    @filename_with_path = "#{Rails.root}/tmp/uploads/Activations.csv"
-    CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
-      activation = Activation.find_by_aid(row[:aid])
-      unless activation
-        activation = Activation.new
-        activation.aid = row[:aid]
+    filename_with_path = "#{Rails.root}/tmp/uploads/Activations.csv"
+    activations = []
+    serial_numbers = SerialNumber.pluck(:snid, :id) # Load serial numbers into array so we don't hit the DB each time
+
+    # Import data from CSV into an array
+    CSV.foreach(filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
+
+      # Look in serial numbers array for snid and get id
+      if row[:snid].present? && serial_numbers.select{ |snid, id| snid == row[:snid].to_i }.size > 0
+        serial_number_id = serial_numbers.select{ |snid, id| snid == row[:snid].to_i }[0][1].to_i
+      else
+        serial_number_id = 0
       end
-      activation.snid = row[:snid]
-      activation.system_code = row[:system_code]
-      activation.activation_id = row[:activation_id]
-      activation.computer_description = row[:computer_description]
-      activation.activation_date = gs_convert_date(row[:activation_date])
-      activation.active_activation = gs_convert_boolean(row[:active_activation])
-      activation.deactivation_date = gs_convert_date(row[:deactivation_date])
-      activation.deactivation_by = row[:deactivation_by]
 
-      # Link up to Fair and Serial Number
-      activation.serial_number = SerialNumber.find_by_snid(row[:snid])
-
-      # Save record
-      activation.save
+      # Import CSV into activations array
+      activations << Activation.new(
+        aid:                  row[:aid],
+        snid:                 row[:snid],
+        system_code:          row[:system_code],
+        activation_id:        row[:activation_id],
+        computer_description: row[:computer_description],
+        activation_date:      gs_convert_date(row[:activation_date]),
+        active_activation:    gs_convert_boolean(row[:active_activation]),
+        deactivation_date:    gs_convert_date(row[:deactivation_date]),
+        deactivation_by:      row[:deactivation_by],
+        serial_number_id:     serial_number_id
+      )
     end
+
+    # Bulk import activations array
+    Activation.import activations
   end
 end

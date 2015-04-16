@@ -2,29 +2,37 @@ class ImportSerialNumbersJob < GladstoneJob
   require 'csv'
 
   def perform(*args)
+    filename_with_path = "#{Rails.root}/tmp/uploads/Serial Numbers.csv"
+    serial_numbers = []
+    fairs = Fair.pluck(:fid, :id) # Load fairs into fairs array so we don't hit the DB each time
+
     # Import data from CSV
-    @filename_with_path = "#{Rails.root}/tmp/uploads/Serial Numbers.csv"
-    CSV.foreach(@filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
-      serial_number = SerialNumber.find_by_snid(row[:snid])
-      unless serial_number
-        serial_number = SerialNumber.new
-        serial_number.snid = row[:snid]
+    CSV.foreach(filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
+
+      # Look in fairs array for fid and get id
+      if row[:fid].present? && fairs.select{ |fid, id| fid == row[:fid].to_i }.size > 0
+        fair_id = fairs.select{ |fid, id| fid == row[:fid].to_i }[0][1].to_i
+      else
+        fair_id = 0
       end
-      serial_number.fid = row[:fid]
-      serial_number.version = row[:version]
-      serial_number.edition = row[:edition]
-      serial_number.fair_name = row[:fair_name]
-      serial_number.serial_number = row[:serial_number]
-      serial_number.issue_date = gs_convert_date(row[:issue_date])
-      serial_number.active_serial_number = gs_convert_boolean(row[:active_serial_number])
-      serial_number.extras = row[:extras]
-      serial_number.service_plan_override = row[:service_plan_override]
 
-      # Link up to Fair
-      serial_number.fair = Fair.find_by_fid(row[:fid])
-
-      # Save record
-      serial_number.save
+      # Import CSV into serial numbers array
+      serial_numbers << SerialNumber.new(
+        snid:                  row[:snid],
+        fid:                   row[:fid],
+        version:               row[:version],
+        edition:               row[:edition],
+        fair_name:             row[:fair_name],
+        serial_number:         row[:serial_number],
+        issue_date:            gs_convert_date(row[:issue_date]),
+        active_serial_number:  gs_convert_boolean(row[:active_serial_number]),
+        extras:                row[:extras],
+        service_plan_override: row[:service_plan_override],
+        fair_id:               fair_id
+      )
     end
+
+    # Bulk import serial numbers array
+    SerialNumber.import serial_numbers
   end
 end
