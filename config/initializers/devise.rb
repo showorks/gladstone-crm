@@ -97,7 +97,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '2439467851ea4a69b0653841772d0a9384387a3a564d89b346423860de311816f2fcd68e6daf0e61727e1b883511d67d257f9c969235bf42668ee8cbfd38656f'
+  config.pepper = '2439467851ea4a69b0653841772d0a9384387a3a564d89b346423860de311816f2fcd68e6daf0e61727e1b883511d67d257f9c969235bf42668ee8cbfd38656f'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -129,10 +129,10 @@ Devise.setup do |config|
   config.remember_for = 2.weeks
 
   # Invalidates all the remember me tokens when the user signs out.
-  config.expire_all_remember_me_on_sign_out = true
+  config.expire_all_remember_me_on_sign_out = false
 
   # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = false
+  config.extend_remember_period = true
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
