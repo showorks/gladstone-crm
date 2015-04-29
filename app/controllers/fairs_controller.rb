@@ -64,39 +64,6 @@ class FairsController < ApplicationController
     end
   end
 
-  def autocomplete_fairs
-    if params[:q].include?(":") && params[:q].split(":")[1].present?
-      search_area = params[:q].split(":")[0].strip
-      search = params[:q].split(":")[1].strip
-    elsif params[:area].present?
-      search_area = params[:area]
-      search = params[:q]
-    else
-      render :json => {:total => 0, :fairs => Fair.none }, :callback => params[:callback]
-      return
-    end
-    search = '%' + search.strip.downcase + '%'
-    case search_area
-      when "fair"
-        @fairs = Fair.select("id, fair_name, fair_state, purchased, showorks_web_user")
-        @fairs = @fairs.where("LOWER(fair_name) like ?", '%' + search + '%')
-      when "contact"
-        @fairs = nil
-        @fairs = Fair.select("fairs.id, fairs.fair_name, fairs.fair_state, fairs.purchased, fairs.showorks_web_user, contacts.contact_name, contacts.contact_phone_1, contacts.contact_phone_2, contacts.contact_phone_cell").joins(:contacts)
-        @fairs = @fairs.where("LOWER(contacts.contact_name) like ?", search)
-      when "tel"
-        @fairs = nil
-        @fairs = Fair.select("fairs.id, fairs.fair_name, fairs.fair_state, fairs.purchased, fairs.showorks_web_user, contacts.contact_name, contacts.contact_phone_1, contacts.contact_phone_2, contacts.contact_phone_cell").joins(:contacts)
-        @fairs = @fairs.where("contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", search, search, search)
-      else
-        @fairs = nil
-        @fairs = Fair.select("fairs.id, fairs.fair_name, fairs.fair_state, fairs.purchased, fairs.showorks_web_user, contacts.contact_name, contacts.contact_phone_1, contacts.contact_phone_2, contacts.contact_phone_cell").joins(:contacts)
-        @fairs = @fairs.where("LOWER(fair_name) like ? or LOWER(contacts.contact_name) like ? or contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", search, search, search, search, search)
-
-    end
-    @fairs = @fairs.order("fair_name").page(params[:page]).per(params[:page_limit])
-    render :json => {:total => @fairs.size, :fairs => @fairs }, :callback => params[:callback]
-  end
 
   def search
     return unless params[:search]
@@ -106,37 +73,17 @@ class FairsController < ApplicationController
     @query = "#{params[:search]}"
     search = params[:search]
 
-    # Search Operators
-    terms = search.split(" ")
-    terms.each do |term|
-      if term.include?(":")
-        search.slice!(term)
-        search.strip!
-        operator = term.split(":")[0]
-        query = term.split(":")[1].downcase
-        if operator.present? && query.present?
-          case operator
-            when "fair"
-              @fairs = @fairs.where("LOWER(fair_name) like ?", "%#{query}%")
-            when "contact"
-              @contacts = @contacts.where("LOWER(contacts.contact_name) like ?", "%#{query}%")
-            when "state"
-              @fairs = @fairs.where("LOWER(fair_state) = ?", query)
-              @contacts = @contacts.where("LOWER(contact_state) = ?", query)
-            when "tel"
-              @contacts = @contacts.where("contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", "%#{query}%", "%#{query}%", "%#{query}%")
-          end
-        end
-      end
-    end
-
-    # Common Search
+    # Build Search
     if search.blank? && terms.find_index("state") == nil && terms.find_index("fair") == nil
       @fairs = Fair.none
     else
-      @fairs = @fairs.where("LOWER(fair_name) like ?", "%#{search.downcase}%")
+      @fairs = @fairs.where("fair_name ILIKE ?", "%#{search}%")
     end
-    @contacts = @contacts.where(" LOWER(contacts.contact_name) like ? or contacts.contact_phone_1 like ? OR contacts.contact_phone_2 like ? or contacts.contact_phone_cell like ?", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%")
+    @contacts = @contacts.where(" LOWER(contacts.contact_name) ILIKE ? OR " \
+                         " regexp_replace(contacts.contact_phone_1, '[^a-zA-Z0-9]+', '', 'g') LIKE ? OR " \
+                         " regexp_replace(contacts.contact_phone_1, '[^a-zA-Z0-9]+', '', 'g') LIKE ? OR " \
+                         " regexp_replace(contacts.contact_phone_1, '[^a-zA-Z0-9]+', '', 'g') LIKE ?", \
+                         "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
 
     # Apply sort
     @fairs = @fairs.order("fair_name").limit(25)

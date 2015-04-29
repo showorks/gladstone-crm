@@ -50,7 +50,6 @@ class FilesController < ApplicationController
   def import
     Delayed::Job.enqueue ImportChangesJob.new(params[:key])
     flash[:notice] = "Your file has been queued for importing."
-    # ImportChangesJob.new(params[:key]).perform
     redirect_to root_path
   end
 
