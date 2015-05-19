@@ -2,6 +2,7 @@ class FairsController < ApplicationController
   before_action :authenticate_user!
   authorize_resource
 
+  before_action :redirect_if_fid, only: :index
   before_action :set_fair, only: [:show, :edit, :update, :destroy]
 
   # GET /fairs
@@ -92,6 +93,14 @@ class FairsController < ApplicationController
   end
 
   private
+    # Add redirect so /fairs?fid=123 redirects to fair with fid of 123
+    def redirect_if_fid
+      if params[:fid].present?
+        fair = Fair.find_by_fid(params[:fid])
+        redirect_to fair_url(fair.id) if fair
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_fair
       @fair = Fair.find(params[:id])
