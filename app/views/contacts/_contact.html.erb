@@ -16,9 +16,12 @@
     <%= "<br><em>Registered: #{l contact.contact_date_registered}</em>".html_safe if contact.contact_date_registered? %>
     </small>
   </td>
-  <% if contact.cid.blank? && (current_user.role == "administrator" || (contact.created_by.present? && current_user.id == contact.created_by)) %>
-    <td><%= link_to_if contact.cid.blank?, "Edit", edit_fair_contact_path(@fair, contact) %></td>
-  <% else %>
-    <td>&nbsp;</td>
-  <% end %>
+  <td>
+    <div class="btn-group" role="group" aria-label="...">
+      <%= link_to 'New Message', new_fair_message_path(@fair, contact_id: contact.id), class: 'btn btn-default btn-sm' %>
+      <% if contact.cid.blank? && (current_user.role == "administrator" || (contact.created_by.present? && current_user.id == contact.created_by)) %>
+          <%= link_to_if contact.cid.blank?, "Edit Contact", edit_fair_contact_path(@fair, contact), class: 'btn btn-default btn-sm' %>
+      <% end %>
+    </div>
+  </td>
 </tr>

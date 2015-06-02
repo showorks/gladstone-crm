@@ -66,12 +66,8 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-
+    <br>
     <div role="tabpanel" class="tab-pane active" id="messages">
-      <p>
-        <br>
-        <%= link_to "New Message", new_fair_message_path(@fair), class: "btn btn-primary" %>
-      </p>
       <%= render partial: 'messages/messages', locals: {messages: @fair.messages.sorted} %>
     </div>
 

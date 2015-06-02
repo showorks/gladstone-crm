@@ -20,6 +20,8 @@ class MessagesController < ApplicationController
   # GET /messages/new
   def new
     @message = @fair.messages.new
+    @message.incident_date = Time.now
+    @message.contact_id = params[:contact_id]
   end
 
   # GET /messages/1/edit
