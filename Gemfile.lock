@@ -111,10 +111,7 @@ GEM
       warden (~> 1.2.3)
     devise_lastseenable (0.0.4)
       devise
-      devise
       rails (>= 3.0.4)
-      rails (>= 3.0.4)
-      warden
       warden
     erubis (2.7.0)
     excon (0.45.3)
@@ -422,3 +419,6 @@ DEPENDENCIES
   web-console (~> 2.0)
   workless
   zipruby
+
+BUNDLED WITH
+   1.10.3
