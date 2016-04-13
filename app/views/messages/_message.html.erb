@@ -7,7 +7,7 @@
     <% end %>
   </td>
   <td nowrap><%= message.contact.contact_name %></td>
-  <td nowrap><%= l message.incident_date if message.incident_date.present? %></td>
+  <td nowrap><%= l message.incident_date.to_date if message.incident_date.present? %></td>
   <td><%= message.incident_memo %></td>
   <% if message.iid.blank? && (current_user.role == "administrator" || (message.created_by.present? && current_user.id == message.created_by)) %>
     <td><%= link_to_if message.iid.blank?, "Edit", edit_fair_message_path(@fair, message), class: 'btn btn-default btn-sm' %></td>

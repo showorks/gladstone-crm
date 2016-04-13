@@ -18,6 +18,37 @@ class ApplicationController < ActionController::Base
     RecordWithOperator.operator = current_user
   end
 
+  def format_datetime_to_iso_sub(params)
+    params.each do |param|
+      if param[1].class == ActionController::Parameters
+        param[1] = format_datetime_to_iso_sub(param[1])
+      elsif (/_date/.match(param[0]) || /_on/.match(param[0])) && param[1].present? && !/_blank/.match(param[0]) && !/_present/.match(param[0])
+        unless param[1].split("-")[0].size == 4 && param[1].split("-")[1].size == 2 && param[1].split("-")[2].size == 2
+          params[param[0]] = Date.strptime(param[1], I18n.t("date.formats.default")).to_s
+        end
+      end
+    end
+    return params
+  end
+
+  def format_datetime_to_iso
+    if params
+      params.each do |param|
+        if param[1].class == ActionController::Parameters
+          param[1] = format_datetime_to_iso_sub(param[1])
+        else
+          if (/_date/.match(param[0]) || /_on/.match(param[0])) && param[1].present?
+            unless param[1].split("-")[0].size == 4 && param[1].split("-")[1].size == 2 && param[1].split("-")[2].size == 2
+              params[param[0]] = Date.strptime(param[1], I18n.t("date.formats.default")).to_s
+            end
+          end
+        end
+      end
+    end
+    return params
+  end
+
+
   protected
 
   def json_request?

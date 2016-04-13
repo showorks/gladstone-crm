@@ -24,16 +24,38 @@ en:
   FalseClass: "No"
 
   date:
+    input:
+      formats:
+        - :default
+        - :slashes
+        - :long
+        - :short
     formats:
       default: "%m-%d-%Y"
-  time:
-    formats:
-      default: "%m-%d-%Y %I:%M%p"
+      slashes: "%m/%d/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
 
+  time:
+    input:
+      formats:
+        - :long
+        - :medium
+        - :short
+        - :default
+        - :time
+    formats:
+      default: "%m-%d-%Y %I:%M %p"
+      old_default: "%a, %d %b %Y %H:%M:%S %z"
+      short: "%d %b %I:%M %p"
+      long: "%B %d, %Y %I:%M %p"
+    am: "am"
+    pm: "pm"
+    
   datepicker:
     dformat: '%m-%d-%Y'             # display format of the date (this is the default, can be ommited)
     pformat: 'MM-DD-YYYY'           # picking format of the date (this is the default, can be ommited)
   timepicker:
     dformat: '%R'                   # display format of the time (this is the default, can be ommited)
-    pformat: 'HH:mm'                # picking format of the time (this is the default, can be ommited)
+    pformat: 'h:mm A'                # picking format of the time (this is the default, can be ommited)
   dayViewHeaderFormat: 'MMMM YYYY'  # picking format of the time (this is the default, can be ommited)

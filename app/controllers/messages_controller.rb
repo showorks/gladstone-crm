@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
   before_action :set_fair
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :set_operator, only: [:create, :update]
+  before_action :format_datetime_to_iso, :only => [:update, :create]
 
   # GET /messages
   # GET /messages.json
