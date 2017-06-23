@@ -2,7 +2,7 @@
   <td nowrap><%= contact.contact_name %> <br> <small><%= contact.contact_email %></small></td>
   <td nowrap><%= contact.contact_phone_numbers.join("<br>").html_safe if contact.contact_phone_numbers %></td>
   <td nowrap>
-    <%= contact.contact_full_address.join("<br>").html_safe  %>
+    <%= contact.contact_full_address.join("<br>").html_safe if contact.contact_full_address %>
     <%= "<br>(Fair Address)".html_safe if contact.fair_address? %>
   </td>
   <td>
