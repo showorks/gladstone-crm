@@ -90,7 +90,7 @@ Rails.application.configure do
   }
   ActionMailer::Base.delivery_method = :smtp
 
-  config.after_initialize do
-    Delayed::Job.scaler = :heroku_cedar
-  end
+  #config.after_initialize do
+    #Delayed::Job.scaler = :heroku_cedar
+  #end
 end
