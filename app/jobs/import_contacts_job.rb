@@ -79,15 +79,7 @@ class ImportContactsJob < GladstoneJob
       )
     end
 
-    contacts = import(contacts) if contacts.size > 9
-
-    # Bulk import contacts array
-    #Contact.import contacts
-  end
-
-  def import(contacts)
-    Contact.import contacts
-    []
+    contacts = [] and Contact.import(contacts) if contacts.size > 49
   end
 end
 

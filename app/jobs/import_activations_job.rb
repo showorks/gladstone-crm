@@ -17,8 +17,8 @@ class ImportActivationsJob < GladstoneJob
       end
 
       # Import CSV into activations array
-      #activations << Activation.new(
-      Activation.create!(
+      #Activation.create!(
+      activations << Activation.new(
         aid:                  row[:aid],
         snid:                 row[:snid],
         system_code:          row[:system_code],
@@ -32,6 +32,7 @@ class ImportActivationsJob < GladstoneJob
       )
     end
 
+    activations = [] and Activation.import(activations) if activations.size > 49
     # Bulk import activations array
     #Activation.import activations
   end
