@@ -17,7 +17,8 @@ class ImportMessagesJob < GladstoneJob
       end
 
       # Import CSV into messages array
-      messages << Message.new(
+      #messages << Message.new(
+      Message.create!(
         iid:                     row[:iid],
         cid:                     row[:cid],
         incident_date:           gs_convert_date(row[:incident_date]),
@@ -31,7 +32,7 @@ class ImportMessagesJob < GladstoneJob
     end
 
     # Bulk import messages array
-    Message.import messages
+    #Message.import messages
   end
 end
 

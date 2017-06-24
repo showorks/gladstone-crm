@@ -9,7 +9,8 @@ class ImportFairsJob < GladstoneJob
     CSV.foreach(filename_with_path, :headers => true, :header_converters => :symbol, :encoding => 'ISO-8859-1:utf-8') do |row|
 
       # Import CSV into fairs array
-      fairs << Fair.new(
+      #fairs << Fair.new(
+      Fair.create!(
         fid:                        row[:fid],
         is_fair:                    gs_convert_boolean(row[:is_fair]),
         fair_name:                  row[:fair_name],
@@ -43,7 +44,7 @@ class ImportFairsJob < GladstoneJob
     end
 
     # Bulk import fairs array
-    Fair.import fairs
+    #Fair.import fairs
   end
 end
 

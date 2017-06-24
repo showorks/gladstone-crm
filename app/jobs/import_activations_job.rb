@@ -17,7 +17,8 @@ class ImportActivationsJob < GladstoneJob
       end
 
       # Import CSV into activations array
-      activations << Activation.new(
+      #activations << Activation.new(
+      Activation.create!(
         aid:                  row[:aid],
         snid:                 row[:snid],
         system_code:          row[:system_code],
@@ -32,6 +33,6 @@ class ImportActivationsJob < GladstoneJob
     end
 
     # Bulk import activations array
-    Activation.import activations
+    #Activation.import activations
   end
 end
