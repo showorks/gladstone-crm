@@ -17,8 +17,7 @@ class ImportContactsJob < GladstoneJob
       end
 
       # Import CSV into contacts array
-      #contacts << Contact.new(
-      Contact.create!(
+      contacts << Contact.new(
         cid:                                    row[:cid],
         fid:                                    row[:fid],
         contact_name:                           row[:contact_name],
@@ -80,8 +79,15 @@ class ImportContactsJob < GladstoneJob
       )
     end
 
+    contacts = import(contacts) if contacts.size > 9
+
     # Bulk import contacts array
     #Contact.import contacts
+  end
+
+  def import(contacts)
+    Contact.import contacts
+    []
   end
 end
 
