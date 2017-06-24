@@ -30,9 +30,9 @@ class ImportSerialNumbersJob < GladstoneJob
         service_plan_override: row[:service_plan_override],
         fair_id:               fair_id
       )
+      SerialNumber.import(serial_numbers) and serial_numbers = [] if serial_numbers.size > 49
     end
 
-    serial_numbers = [] and SerialNumber.import(serial_numbers) if serial_numbers.size > 49
     # Bulk import serial numbers array
     #SerialNumber.import serial_numbers
   end

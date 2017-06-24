@@ -41,9 +41,9 @@ class ImportFairsJob < GladstoneJob
         bulk_ne:                    gs_convert_boolean(row[:bulk_ne]),
         judas:                      gs_convert_boolean(row[:judas])
       )
+      Fair.import(fairs) and fairs = [] if fairs.size > 49
     end
 
-    fairs = [] and Fair.import(fairs) if fairs.size > 49
     # Bulk import fairs array
     #Fair.import fairs
   end

@@ -77,9 +77,9 @@ class ImportContactsJob < GladstoneJob
         bulk_ne:                                gs_convert_boolean( row[:bulk_ne]),
         fair_id:                                fair_id
       )
+      Contact.import(contacts) and contacts = [] if contacts.size > 49
     end
 
-    contacts = [] and Contact.import(contacts) if contacts.size > 49
   end
 end
 

@@ -30,9 +30,9 @@ class ImportActivationsJob < GladstoneJob
         deactivation_by:      row[:deactivation_by],
         serial_number_id:     serial_number_id
       )
+      Activation.import(activations) and activations = [] if activations.size > 49
     end
 
-    activations = [] and Activation.import(activations) if activations.size > 49
     # Bulk import activations array
     #Activation.import activations
   end
