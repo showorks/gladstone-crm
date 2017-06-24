@@ -25,7 +25,7 @@ class Message < ActiveRecord::Base
   end
 
   def set_cid
-    self.cid = self.contact.cid if self.contact
+    self.cid = self.contact.cid if self.contact && self.cid.blank?
   end
 
   def update_sync

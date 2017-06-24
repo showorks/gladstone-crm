@@ -10,7 +10,7 @@ gem 'pg'
 gem 'activerecord-import'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'workless'
+#gem 'workless'
 gem 'carrierwave_direct'
 
 gem 'honeybadger'

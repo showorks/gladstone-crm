@@ -7,7 +7,7 @@ class Contact < ActiveRecord::Base
 
   records_with_operator_on :create, :update
   before_create :set_fid
-  after_save :update_sync
+  after_save :update_sync, unless: :new_record?
 
   def to_s
     contact_name
@@ -22,7 +22,7 @@ class Contact < ActiveRecord::Base
   end
 
   def set_fid
-    self.fid = self.fair.fid if self.fair
+    self.fid = self.fair.fid if self.fair && self.fid.blank?
   end
 
   def update_sync
