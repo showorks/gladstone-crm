@@ -29,10 +29,10 @@ class ImportMessagesJob < GladstoneJob
         incident_charge:         gs_convert_boolean(row[:incident_charge]),
         contact_id:              contact_id
       )
-     Message.import(messages) and messages = [] if messages.size > 49
+      Message.import(messages) and messages = [] if messages.size > 49
     end
 
-    # Bulk import messages array
+    Message.import(messages)
   end
 end
 

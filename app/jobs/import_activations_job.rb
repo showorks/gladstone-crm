@@ -33,7 +33,6 @@ class ImportActivationsJob < GladstoneJob
       Activation.import(activations) and activations = [] if activations.size > 49
     end
 
-    # Bulk import activations array
-    #Activation.import activations
+    Activation.import(activations)
   end
 end

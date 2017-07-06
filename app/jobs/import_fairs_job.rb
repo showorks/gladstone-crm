@@ -44,8 +44,7 @@ class ImportFairsJob < GladstoneJob
       Fair.import(fairs) and fairs = [] if fairs.size > 49
     end
 
-    # Bulk import fairs array
-    #Fair.import fairs
+    Fair.import(fairs)
   end
 end
 

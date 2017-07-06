@@ -33,7 +33,6 @@ class ImportSerialNumbersJob < GladstoneJob
       SerialNumber.import(serial_numbers) and serial_numbers = [] if serial_numbers.size > 49
     end
 
-    # Bulk import serial numbers array
-    #SerialNumber.import serial_numbers
+    SerialNumber.import(serial_numbers)
   end
 end

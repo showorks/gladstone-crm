@@ -80,6 +80,7 @@ class ImportContactsJob < GladstoneJob
       Contact.import(contacts) and contacts = [] if contacts.size > 49
     end
 
+    Contact.import(contacts)
   end
 end
 
