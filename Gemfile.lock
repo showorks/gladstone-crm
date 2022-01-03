@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  remote: git@github.com:zpaulovics/datetimepicker-rails.git
   revision: 36d21cec5da7f5b214925804f60e63c61c747023
   branch: master
   submodules: true
@@ -421,4 +421,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   1.15.1
+   2.3.4
