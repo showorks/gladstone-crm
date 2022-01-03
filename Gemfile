@@ -33,7 +33,7 @@ gem 'select2-rails'
 gem 'kaminari'
 gem 'font-awesome-rails'
 gem 'momentjs-rails'
-gem 'datetimepicker-rails', git: 'git@github.com:zpaulovics/datetimepicker-rails.git', branch: 'master', submodules: true
+gem 'datetimepicker-rails', git: 'https://github.com:zpaulovics/datetimepicker-rails.git', branch: 'master', submodules: true
 
 # Use Unicorn as the app server
 gem 'unicorn'
