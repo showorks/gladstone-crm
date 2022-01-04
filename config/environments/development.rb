@@ -44,6 +44,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.after_initialize do
-    Delayed::Job.scaler = :null
+    # Delayed::Job.scaler = :null
   end
 end

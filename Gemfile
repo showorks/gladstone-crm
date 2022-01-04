@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.6.9'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.11.3'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'uglifier', '>= 1.3.0'
-gem "figaro"
-gem 'pg'
+gem 'figaro'
+gem 'pg', '0.21.0'
 gem 'activerecord-import'
 gem 'daemons'
 gem 'delayed_job_active_record'
@@ -18,7 +17,7 @@ gem 'devise'
 gem 'devise_lastseenable'
 gem 'cancancan'
 gem 'record_with_operator'
-gem "zipruby"
+gem 'zipruby'
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -27,17 +26,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass'
 gem 'simple_form'
-gem "country_select"
+gem 'country_select'
 gem 'show_for'
-gem "select2-rails"
-gem "kaminari"
-gem "font-awesome-rails"
+gem 'select2-rails'
+gem 'kaminari'
+gem 'font-awesome-rails'
 gem 'momentjs-rails'
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'datetimepicker-rails', git: 'https://github.com/zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Use Unicorn as the app server
 gem 'unicorn'
 gem 'unicorn-rails'
+
+gem 'bigdecimal', '1.3.5' # For Ruby 2.6 and greater
+gem 'xmlrpc' # For Ruby 2.4 and greater
 
 
 group :development, :test do
@@ -45,10 +47,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'spring'                # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'pry-rails'             # Pry console
-  gem "bullet"                # n+1 detection
+  gem 'bullet'                # n+1 detection
   gem 'better_errors'         # Better errors
   gem 'binding_of_caller'     # Required by better_errors
-  gem "letter_opener"         # View emails in browser instead of delivering them
+  gem 'letter_opener'         # View emails in browser instead of delivering them
   gem 'quiet_assets'          # Quieten asset notifications
 end
 
